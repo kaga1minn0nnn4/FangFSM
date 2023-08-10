@@ -9,7 +9,7 @@ enum class Status {
 int output;
 int count = 0;
 
-Status trans_to_q0() {
+Status trans_from_q0() {
     if (count > 10) {
         return Status::end;
     } else if (output == 1) {
@@ -18,7 +18,7 @@ Status trans_to_q0() {
     return Status::q0;
 }
 
-Status trans_to_q1() {
+Status trans_from_q1() {
     if (count > 10) {
         return Status::end;
     } else if (output == 2) {
@@ -28,7 +28,7 @@ Status trans_to_q1() {
     return Status::q1;
 }
 
-Status trans_to_end() {
+Status trans_from_end() {
     return Status::end;
 }
 
@@ -52,9 +52,9 @@ int main() {
     fsm.RegisterStateFct(Status::q1, q1);
     fsm.RegisterStateFct(Status::end, end);
 
-    fsm.RegisterTransitionFct(Status::q0, trans_to_q0);
-    fsm.RegisterTransitionFct(Status::q1, trans_to_q1);
-    fsm.RegisterTransitionFct(Status::end, trans_to_end);
+    fsm.RegisterTransitionFct(Status::q0, trans_from_q0);
+    fsm.RegisterTransitionFct(Status::q1, trans_from_q1);
+    fsm.RegisterTransitionFct(Status::end, trans_from_end);
 
     for (int i = 0; i < 20; i++) {
         fsm.Run();
