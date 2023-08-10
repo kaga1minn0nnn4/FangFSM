@@ -52,8 +52,8 @@ namespace FangFSMLibrary {
 
     template <typename T>
     void FangFSM<T>::Run() {
-        current_state_ = (transition_fcts_[current_state_]());
         state_[current_state_]();
+        current_state_ = (transition_fcts_[current_state_]());
     }
 
 }
